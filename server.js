@@ -34,10 +34,10 @@ const isPerfect = (value) => {
 
 // Checks if a number is an Armstrong
 const isArmstrong = (value) => {
-    const figure = String(value).split(''); // Convert number to a string and split it into digits
+    const figure = String(Math.abs(value)).split(''); // Convert number to a string and split it into digits
     const power = figure.length; // How many digits the number has
     const sum = figure.reduce((total, element) => total + Math.pow(Number(element), power), 0); // Sum of digits raised to the power
-    return sum === value; // If the sum equals the original number, it is an Armstrong number
+    return sum === Math.abs(value); // If the sum equals the original number, it is an Armstrong number
 };
 
 // Calculate the sum of digits of a number
@@ -60,7 +60,7 @@ const getProperties = (value) => {
 // API endpoint to classify a number
 app.get('/api/classify-number', async (req, res) => {
     try {
-        const number = parseInt(req.query.number); // Get the number from the URL (e.g., /api/classify-number?number=371)
+        const number = Number(req.query.number); // Get the number from the URL (e.g., /api/classify-number?number=371)
 
         // Validate input: Check if the value is a valid integer
         if (isNaN(number) || !Number.isInteger(number)) {
